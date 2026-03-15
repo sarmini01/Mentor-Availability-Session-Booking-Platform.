@@ -1,0 +1,84 @@
+import java.util.List;
+import java.util.ArrayList;
+class User {
+    protected int userId;
+    protected String name;
+    protected String email;
+    protected String password;
+    public void login(String email, String password) {}
+    public void logout() {}
+    public void updateProfile(String name, String email) {}
+}
+class Mentor extends User {
+    private String specialization;
+    private int maxSessionsPerWeek;
+    private List<AvailabilitySlot> slots = new ArrayList<>();
+    public void createAvailabilitySlot(AvailabilitySlot slot) {}
+    public void updateAvailabilitySlot(int slotId) {}
+    public void deleteAvailabilitySlot(int slotId) {}
+    public List<Session> viewBookedSessions() {
+        return null;
+    }
+}
+class Student extends User {
+    private String department;
+    private int year;
+    public List<AvailabilitySlot> viewAvailableSlots() {
+        return null;
+    }
+    public Session bookSession(int slotId, int mentorId) {
+        return null;
+    }
+    public void cancelSession(int sessionId) {}
+
+    public void rescheduleSession(int sessionId, int newSlotId) {}
+}
+class Admin extends User {
+    private String role;
+    public List<Session> viewSessionHistory() {
+        return null;
+    }
+    public void cancelOutdatedBookings() {}
+    public void rescheduleSession(int sessionId, int newSlotId) {}
+}
+class AvailabilitySlot {
+    private int slotId;
+    private int mentorId;
+    private String date;
+    private String startTime;
+    private String endTime;
+    private boolean isBooked;
+    public boolean checkAvailability() {
+        return !isBooked;
+    }
+    public void markAsBooked() {
+        isBooked = true;
+    }
+    public void markAsAvailable() {
+        isBooked = false;
+    }
+}
+class Session {
+    private int sessionId;
+    private int mentorId;
+    private int studentId;
+    private int slotId;
+    private String status; 
+    private String meetingLink;
+    public void confirmSession() {}
+    public void cancelSession() {}
+    public void rescheduleSession(int newSlotId) {}
+}
+class SessionHistory {
+    private List<Session> sessionRecords = new ArrayList<>();
+    public void addSession(Session session) {}
+    public List<Session> getAllSessions() {
+        return sessionRecords;
+    }
+    public List<Session> getSessionsByMentor(int mentorId) {
+        return null;
+    }
+    public List<Session> getSessionsByStudent(int studentId) {
+        return null;
+    }
+}
